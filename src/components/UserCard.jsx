@@ -6,7 +6,7 @@ const UserCard = ({ user }) => {
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleFavoriteClick = (e) => {
-    e.preventDefault(); // Empêcher la navigation lors du clic sur l'étoile
+    e.preventDefault();
     toggleFavorite(user.id);
   };
 

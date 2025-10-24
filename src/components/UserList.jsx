@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import UserCard from './UserCard';
+import SortSelect from './SortSelect';
 import './UserList.css';
 
 const UserList = () => {
@@ -9,13 +10,11 @@ const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // Synchroniser l'état avec l'URL
   const searchTerm = searchParams.get('q') || '';
   const sortBy = searchParams.get('sort') || 'none';
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
-  const ITEMS_PER_PAGE = 10; // none, name_asc, name_desc, age_asc, age_desc
+  const ITEMS_PER_PAGE = 10; 
 
-  // Trier et filtrer les utilisateurs
   const sortUsers = (users) => {
     if (sortBy === 'none') return users;
     
@@ -36,7 +35,6 @@ const UserList = () => {
   };
 
   const { paginatedUsers, totalPages } = useMemo(() => {
-    // D'abord filtrer
     let result = users;
     if (searchTerm.trim()) {
       const searchTermLower = searchTerm.toLowerCase();
@@ -47,18 +45,15 @@ const UserList = () => {
       );
     }
     
-    // Ensuite trier
-    result = sortUsers(result);
+  result = sortUsers(result);
 
-    // Calculer la pagination
-    const totalPages = Math.ceil(result.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(result.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const paginatedUsers = result.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     return { paginatedUsers, totalPages };
   }, [users, searchTerm, sortBy, currentPage]);
 
-  // Assurer que currentPage est valide quand le nombre de résultats change
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
       setCurrentPage(1);
@@ -102,7 +97,7 @@ const UserList = () => {
               } else {
                 params.delete('q');
               }
-              params.set('page', '1'); // Reset page on search
+              params.set('page', '1');
               setSearchParams(params);
             }}
             className="search-input"
@@ -110,26 +105,18 @@ const UserList = () => {
         </div>
         
         <div className="sort-controls">
-          <select 
+          <SortSelect 
             value={sortBy}
-            onChange={(e) => {
+            onChange={(value) => {
               const params = new URLSearchParams(searchParams);
-              if (e.target.value !== 'none') {
-                params.set('sort', e.target.value);
+              if (value !== 'none') {
+                params.set('sort', value);
               } else {
                 params.delete('sort');
               }
               setSearchParams(params);
             }}
-            className="sort-select"
-            aria-label="Trier la liste"
-          >
-            <option value="none">Trier par...</option>
-            <option value="name_asc">Nom (A → Z)</option>
-            <option value="name_desc">Nom (Z → A)</option>
-            <option value="age_asc">Âge (croissant)</option>
-            <option value="age_desc">Âge (décroissant)</option>
-          </select>
+          />
         </div>
       </div>
 
