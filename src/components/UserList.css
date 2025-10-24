@@ -8,18 +8,52 @@
   align-items: center;
 }
 
+/* Controls layout */
+.controls {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
 /* Search bar */
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: #f3f4f6; /* plus clair */
+  flex: 1;
+  background: #f3f4f6;
   padding: 10px 14px;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* Sort controls */
+.sort-controls {
+  min-width: 180px;
+}
+
+.sort-select {
   width: 100%;
-  max-width: 1100px;
-  margin: 0 0 20px 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #222;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sort-select:hover {
+  border-color: #d1d5db;
+}
+
+.sort-select:focus {
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
 .search-input {
@@ -122,9 +156,78 @@
   }
 }
 
+/* Pagination controls */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 6px;
+}
+
+.pagination-btn,
+.page-number {
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: #222;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn {
+  padding: 0 12px;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-number.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: white;
+}
+
+.pagination-btn:not(:disabled):hover,
+.page-number:not(.active):hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
 @media (max-width: 700px) {
   .user-list {
     grid-template-columns: 1fr;
   }
-  /* stacked layout on small screens */
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .sort-controls {
+    width: 100%;
+  }
+
+  .page-numbers {
+    gap: 4px;
+  }
+
+  .pagination-btn,
+  .page-number {
+    min-width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
 }
