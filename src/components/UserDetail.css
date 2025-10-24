@@ -7,25 +7,29 @@
 .back-btn {
   background: transparent;
   border: none;
-  color: #333;
+  color: var(--text-color);
   cursor: pointer;
   margin-bottom: 10px;
   font-size: 1.1em;
   padding: 8px 16px;
   border-radius: 4px;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-  background-color: #f0f0f0;
+  background-color: var(--hover-background);
+  color: var(--primary-color);
 }
 
 .detail-card {
-  background: white;
+  background: var(--background-elevated);
+  color: var(--text-color);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
   text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .detail-avatar {
@@ -38,11 +42,23 @@
 
 .detail-card h2 {
   margin: 8px 0 12px 0;
+  color: var(--text-color);
+  font-size: 1.8em;
+  font-weight: 600;
 }
 
 .detail-card p {
-  margin: 6px 0;
-  color: #555;
+  margin: 10px 0;
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+.detail-card .user-info-label {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-right: 8px;
 }
 
 

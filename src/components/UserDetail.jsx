@@ -68,11 +68,26 @@ const UserDetail = () => {
       <div className="detail-card">
         <img src={user.image} alt={`${user.firstName} ${user.lastName}`} className="detail-avatar" />
         <h2>{user.firstName} {user.lastName}</h2>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Téléphone:</strong> {user.phone}</p>
-        <p><strong>Entreprise:</strong> {user.company?.name}</p>
-        <p><strong>Adresse:</strong> {user.address?.address}, {user.address?.city}</p>
-        <p><strong>Age:</strong> {user.age}</p>
+        <p>
+          <span className="user-info-label">Email:</span>
+          {user.email}
+        </p>
+        <p>
+          <span className="user-info-label">Téléphone:</span>
+          {user.phone}
+        </p>
+        <p>
+          <span className="user-info-label">Entreprise:</span>
+          {user.company?.name}
+        </p>
+        <p>
+          <span className="user-info-label">Adresse:</span>
+          {user.address?.address}, {user.address?.city}
+        </p>
+        <p>
+          <span className="user-info-label">Age:</span>
+          {user.age}
+        </p>
       </div>
     </div>
   );

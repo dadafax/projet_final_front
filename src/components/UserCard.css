@@ -1,0 +1,40 @@
+.user-card {
+  position: relative; /* Pour le positionnement du bouton favori */
+}
+
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.favorite-button svg {
+  fill: #e0e0e0;
+  stroke: #666;
+  stroke-width: 1px;
+  transition: fill 0.2s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+}
+
+.favorite-button:hover svg {
+  fill: #ffd700;
+}
+
+.favorite-button.is-favorite svg {
+  fill: #ffd700;
+  stroke: #ffa000;
+}
+
+/* Animation pour le clic sur l'étoile */
+.favorite-button:active {
+  transform: scale(0.9);
+}
